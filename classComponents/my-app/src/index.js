@@ -15,7 +15,13 @@ import './index.css';
 //    }
 //  }
  
-
+ function Square(props) {
+   return (
+     <button className="square" onClick={props.onClick}>
+       {props.value}
+     </button>
+   )
+ }
 
  class Board extends React.Component {
 
@@ -23,12 +29,13 @@ import './index.css';
      super(props);
      this.state = {
        squares: Array(9).fill(null),
+       xIsNext: true,
      }
    }
    
    handleClick(i) {
      const squares = this.state.squares.slice();
-     squares[i] = 'X';
+     squares[i] = this.state.xIsNext ? 'X' : 'O';
      this.setState({squares: squares});
    }
 
